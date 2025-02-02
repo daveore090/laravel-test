@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('code', 6);
             $table->enum('type', ['email', 'sms']);
             $table->timestamp('verified_at')->nullable();
-            $table->timestamp('expires_at');
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
     }
