@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -35,7 +37,8 @@ class User extends Authenticatable
 
     public function generateOTP($type = 'email')
     {
-        $code = Str::random(6);
+        $code = mt_rand(100000, 999999);
+
         return OTP::create([
             'user_id' => $this->id,
             'code' => $code,

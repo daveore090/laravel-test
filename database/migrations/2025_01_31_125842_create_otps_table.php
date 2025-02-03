@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('otps', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('code', 6);
+            $table->string('code', 6)->nullable();
             $table->enum('type', ['email', 'sms']);
             $table->timestamp('verified_at')->nullable();
             $table->timestamp('expires_at')->nullable();
