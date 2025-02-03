@@ -63,24 +63,41 @@ Your application should now be running at: **http://127.0.0.1:8000**
 
 ## Usage
 
-### **1. Generate an OTP (For Testing Purposes)**
-Open Laravel Tinker:
+### **1. Add a User via Laravel Tinker**
+Before generating an OTP, first, add a user manually using Laravel Tinker:
+
 ```bash
 php artisan tinker
 ```
-Run the following command to generate an OTP for a user (assuming a user with ID 1 exists):
-```php
-$user = \App\Models\User::find(1);
-$user->generateOTP();
-```
-Retrieve the OTP:
-```php
-\App\Models\OTP::latest()->first();
-```
-Copy the **OTP code** from the output and use it in the frontend OTP input.
 
-### **2. Verify the OTP**
-- Go to `http://127.0.0.1:8000/otp-verification`
+Inside Tinker, run the following commands:
+
+```php
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+User::create([
+    'name' => 'John Doe',
+    'email' => 'johndoe@example.com',
+    'password' => Hash::make('password123'), // Securely hash the password
+]);
+```
+
+Then retrieve the user:
+
+```php
+$user = User::where('email', 'johndoe@example.com')->first();
+```
+
+### **2. Generate an OTP**
+Once the user is created, generate an OTP using:
+
+```php
+$user->generateOTP('email');
+```
+
+### **3. Verify the OTP**
+- Go to `http://127.0.0.1:8000/`
 - Enter the OTP manually (or paste it).
 - The system will automatically verify it.
 
@@ -91,8 +108,3 @@ Copy the **OTP code** from the output and use it in the frontend OTP input.
 - Using **Livewire + Alpine.js** for frontend interactions.
 
 ---
-
-
-
-
-
