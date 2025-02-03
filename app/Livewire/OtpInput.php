@@ -25,6 +25,7 @@ class OtpInput extends Component
         }
 
         $user = User::where('email', 'johndoe@example.com')->first();
+        //this should be an actual logic of where we gwt the authenticated user
 
         Log::info("Verifying OTP: {$otpCode} for User: {$user->id}");
 
