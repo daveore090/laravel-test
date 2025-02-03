@@ -16,12 +16,6 @@ This project is an OTP (One-Time Password) verification system built with **Lara
 
 ## Installation
 
-### **Step 1: Clone the Repository**
-```bash
-git clone https://github.com/your-username/otp-system.git
-cd otp-system
-```
-
 ### **Step 2: Install Dependencies**
 ```bash
 composer install
